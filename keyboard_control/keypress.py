@@ -11,7 +11,6 @@ def get_key(keyName):
     keyInput = pygame.key.get_pressed() # returns an array of boolean values 
     myKey = getattr(pygame, 'K_{}'.format(keyName)) # get the key index in keyInput array
     #print('K_{}'.format(keyName))
-    print(myKey)
     if keyInput[myKey]:# checking index of key in array (True or False)
         ans = True
 
