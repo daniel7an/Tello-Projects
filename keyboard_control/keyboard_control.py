@@ -1,10 +1,13 @@
+from multiprocessing.connection import wait
 from djitellopy import tello
 import keyboard_control.keypress as kp
 from time import sleep
+import cv2
 
 kp.init()
 me = tello.Tello()
 me.connect()
+me.stream_on()
 
 def getKeyboardInput():
     lr, fb, ud, yv = 0, 0, 0, 0
@@ -34,6 +37,10 @@ def getKeyboardInput():
     return [lr, fb, ud, yv]
 
 while True:
+    img = me.get_frame_read().frame
+    img = cv2.resize(img, (360, 240))
+    cv2.imshow('Frame', img)
+    cv2.waitKey(1)
     vals = getKeyboardInput()
     print(vals)
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
