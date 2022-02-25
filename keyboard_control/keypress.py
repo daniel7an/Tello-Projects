@@ -1,5 +1,5 @@
 import pygame
-
+from time import sleep
 
 def init():
     pygame.init()
@@ -17,6 +17,33 @@ def get_key(keyName):
 
     pygame.display.update()
     return ans
+
+def getKeyboardInput(me):
+    lr, fb, ud, yv = 0, 0, 0, 0
+    speed = 50
+
+    if get_key('LEFT'):
+        lr = -speed
+    elif get_key('RIGHT'):
+        lr = speed
+    if get_key('UP'):
+        fb = speed
+    elif get_key('DOWN'):
+        fb = -speed
+    if get_key('w'):
+        ud = speed
+    elif get_key('s'):
+        ud = -speed
+    if get_key('a'):
+        yv = -speed
+    elif get_key('d'):
+        yv = speed
+    if get_key('q'):
+        me.land()
+        sleep(3)
+    if get_key('e'):
+        me.takeoff()
+    return [lr, fb, ud, yv]
 
 def main():
     if get_key('a'):
