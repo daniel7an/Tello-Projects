@@ -18,7 +18,6 @@ process_this_frame = True
 
 init()
 
-
 me = tello.Tello()
 me.connect()
 me.stream_on()
